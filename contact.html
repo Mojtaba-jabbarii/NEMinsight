@@ -196,10 +196,12 @@
                     </form>
                 </div>
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
-                    <iframe class="position-relative rounded w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                        frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
+                    <div id="map-container">
+                        <iframe id="google-map" class="position-relative rounded w-100 h-100"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50484.5!2d144.9630576153168!3d-37.81362797975195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577577a8863d636!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sau!4v1640995200000!5m2!1sen!2sau"
+                            frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
+                            tabindex="0"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -313,6 +315,70 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- Dynamic Map Update Script -->
+    <script>
+        // Function to update map based on address
+        function updateMap(address) {
+            const mapIframe = document.getElementById('google-map');
+            const encodedAddress = encodeURIComponent(address);
+            const newMapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50484.5!2d144.9630576153168!3d-37.81362797975195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577577a8863d636!2s${encodedAddress}!5e0!3m2!1sen!2sau!4v1640995200000!5m2!1sen!2sau`;
+            mapIframe.src = newMapUrl;
+        }
+
+        // Function to get current address from the page
+        function getCurrentAddress() {
+            const addressElement = document.querySelector('.col-lg-4:nth-child(3) h4.text-primary');
+            return addressElement ? addressElement.textContent.trim() : 'Melbourne, Australia';
+        }
+
+        // Function to update address display and map
+        function updateOfficeAddress(newAddress) {
+            // Update the address display
+            const addressElement = document.querySelector('.col-lg-4:nth-child(3) h4.text-primary');
+            if (addressElement) {
+                addressElement.textContent = newAddress;
+            }
+            
+            // Update the map
+            updateMap(newAddress);
+        }
+
+        // Function to initialize map based on current address
+        function initializeMap() {
+            const currentAddress = getCurrentAddress();
+            updateMap(currentAddress);
+        }
+
+        // Initialize map when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMap();
+        });
+
+        // Optional: Add a simple interface to change address (for testing)
+        function addAddressChanger() {
+            const mapContainer = document.getElementById('map-container');
+            const changerDiv = document.createElement('div');
+            changerDiv.className = 'mt-3';
+            changerDiv.innerHTML = `
+                <div class="input-group">
+                    <input type="text" id="new-address" class="form-control" placeholder="Enter new address (e.g., Sydney, Australia)" value="${getCurrentAddress()}">
+                    <button class="btn btn-primary" onclick="changeAddress()">Update Map</button>
+                </div>
+            `;
+            mapContainer.appendChild(changerDiv);
+        }
+
+        function changeAddress() {
+            const newAddress = document.getElementById('new-address').value;
+            if (newAddress.trim()) {
+                updateOfficeAddress(newAddress);
+            }
+        }
+
+        // Initialize the address changer (you can remove this if you don't want the interface)
+        // addAddressChanger();
+    </script>
 </body>
 
 </html>
