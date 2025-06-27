@@ -518,3 +518,21 @@ h6,
         height: 350px !important;
     }
 }
+
+/* Team member link styling */
+.team-member-link {
+    color: var(--primary) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.team-member-link:hover {
+    color: var(--dark) !important;
+    text-decoration: underline;
+    transform: translateY(-2px);
+}
+
+.team-member-link:active {
+    transform: translateY(0);
+}
