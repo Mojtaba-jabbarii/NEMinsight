@@ -451,3 +451,45 @@ h6,
         margin-bottom: -75px;
     }
 }
+
+/* Make team member photos half size */
+.team-item .team-img {
+    height: 300px;
+    overflow: hidden;
+}
+
+.team-item .team-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Make team items smaller on larger screens */
+@media (min-width: 992px) {
+    .team-item {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .team-item .team-img {
+        height: 240px;
+    }
+}
+
+/* Center team members and reduce spacing */
+.row.g-5 .col-lg-6 {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.row.g-5 {
+    justify-content: center;
+}
+
+/* Reduce padding inside team items */
+.team-item .text-center.py-4 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
