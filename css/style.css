@@ -452,14 +452,15 @@ h6,
     }
 }
 
-/* Make team member photos half size */
+/* Make team member photos 25% bigger */
 .team-item .team-img {
-    height: 300px;
+    height: 375px;
+    max-width: 125%;
     overflow: hidden;
 }
 
 .team-item .team-img img {
-    width: 100%;
+    width: 125%;
     height: 100%;
     object-fit: cover;
     object-position: center;
@@ -468,12 +469,13 @@ h6,
 /* Make team items smaller on larger screens */
 @media (min-width: 992px) {
     .team-item {
-        max-width: 500px;
+        max-width: 625px;
         margin: 0 auto;
     }
     
     .team-item .team-img {
-        height: 240px;
+        height: 300px;
+        max-width: 125%;
     }
 }
 
