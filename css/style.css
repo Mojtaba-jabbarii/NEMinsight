@@ -564,8 +564,8 @@ h6,
     justify-content: unset !important;
     align-items: unset !important;
     flex-direction: unset !important;
-    padding: 0 !important;
-    margin: 0 !important;
+    padding: 1 !important;
+    margin: 1 !important;
     width: auto !important;
     max-width: none !important;
 }
