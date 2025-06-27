@@ -536,3 +536,36 @@ h6,
 .team-member-link:active {
     transform: translateY(0);
 }
+
+/* Remove space between team members in the team section */
+.team-section .row.g-5,
+.team-section .row.g-5 > [class^="col-"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+}
+
+/* Remove Bootstrap gutter for team section */
+.team-section .row.g-5 {
+    --bs-gutter-x: 0 !important;
+    --bs-gutter-y: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+}
+.team-section .row.g-5 > [class^="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+}
+.row.g-5 .col-lg-6 {
+    display: block !important;
+    justify-content: unset !important;
+    align-items: unset !important;
+    flex-direction: unset !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+}
